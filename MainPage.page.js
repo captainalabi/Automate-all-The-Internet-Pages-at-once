@@ -21,6 +21,7 @@ get firstLink(){ return $('li:nth-child(1) a')}
 //any of the anchor links
 anchorLink(index) { return $(`ul li:nth-child(${index}) a`) }
 
+
 get testVariation(){return $('#content h3')}
 
 /**
@@ -62,5 +63,42 @@ async clickCheckbox1(){
 async clickCheckbox2(){
     await this.checkbox2.click()
     }
+
+    //4. Test Context Menu
+
+    //selectors
+    get squareBox(){ return $('#hot-spot')}
+
+    /**
+     * To right click an element
+     */
+async rightClickSquareBox(){
+await this.squareBox.click({ button: 2, x: 30, y: 40, skipRelease:true })
+}
+
+//5. test Dynamic Controls: Enable/disable
+
+//selectors
+get enableInputField(){ return $('#input-example input')}
+get enableButton(){ return $('#input-example button')}
+
+/**
+ * click the enableButton
+ */
+async clickEnableButton(){
+   await this.enableButton.click()
+}
+
+//Test Remove/add -wait until
+
+//elements selectors
+
+get removeAddButton(){ return $("#checkbox-example button")}
+
+async clickRemoveAddButton(){
+   await this.removeAddButton.click()
+}
+
+
 }
 export default new MainPage();
