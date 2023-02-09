@@ -78,21 +78,25 @@ await expect(MainPagePage.enableButton).toBeEnabled()
 //Test Remove/add -wait until
 
 await MainPagePage.clickRemoveAddButton()
-await browser.waitUntil(()=>{ 
+await MainPagePage.removeAddButton.waitUntil( async ()=>{ 
 
-    console.log( MainPagePage.removeAddButton.getText())
-    return MainPagePage.removeAddButton.getText() === 'Add'
-}, 6000, "should wait untill button text changes")
+    //console.log( MainPagePage.removeAddButton.getText())
+    return (await MainPagePage.removeAddButton.getText()) === 'Add'
+}, {
+        timeout: 6000,
+        timeoutMsg: 'expected text to be different after 6s'
+    }
+)
 
-await expect( MainPagePage.removeAddButton).toHaveText('Add')
+await expect(MainPagePage.removeAddButton).toHaveText('Add')
 
-//Test to expect the text to change back to Remove when clickrd again
+//Test to expect the text to change back to Remove when clicked again
 
 await MainPagePage.clickRemoveAddButton()
-await browser.waitUntil(()=>{ 
+await browser.waitUntil( async ()=>{ 
 
     console.log( MainPagePage.removeAddButton.getText())
-    return MainPagePage.removeAddButton.getText() === "Remove"
+    return ( await MainPagePage.removeAddButton.getText()) === "Remove"
 }, 6000, "should wait untill button text changes")
 
 await expect( MainPagePage.removeAddButton).toHaveText("Remove")

@@ -97,6 +97,7 @@ get removeAddButton(){ return $("#checkbox-example button")}
 
 async clickRemoveAddButton(){
    await this.removeAddButton.click()
+   await this.removeAddButton.waitForDisplayed()
 }
 
 
