@@ -1,4 +1,6 @@
-import { assert } from "console"
+//import { expect } from "chai"
+//import { assert } from "console"
+import path from "path"
 import MainPagePage from "../pageobjects/MainPage.page.js"
 //import expect from "chai"
 
@@ -101,9 +103,30 @@ await browser.waitUntil( async ()=>{
 
 await expect( MainPagePage.removeAddButton).toHaveText("Remove")
 
+//6. Test File Upload
 
+//go back to nain page
+MainPagePage.open()
 
+//navigate to the Dynamic Controls page -wait for enabled
+await MainPagePage.clickAnchorLink(18)
+
+//declear file path
+const filePath = ('../wdio/data/code.png')
+
+console.log("path :::::::::::" + filePath)
+
+const remoteFilePath = await browser.uploadFile(filePath)
+
+    await MainPagePage.fileUploadButton.setValue(remoteFilePath)
+
+//submit
+await MainPagePage.clickSubmitButton()
+
+//Assertion
+await expect(MainPagePage.uploadedMessage).toHaveText('File Uploaded!')
 
 
     })
+
 })

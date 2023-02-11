@@ -100,6 +100,20 @@ async clickRemoveAddButton(){
    await this.removeAddButton.waitForDisplayed()
 }
 
+//6. Test File Upload
+
+//element selectors
+get fileUploadButton(){ return $('#file-upload')}
+get submitUploadButton(){ return $('#file-submit')}
+get uploadedMessage(){ return $('h3')}
+
+async clickUploadButton(){
+   await this.fileUploadButton.click()
+}
+
+async clickSubmitButton(){
+   await this.submitUploadButton.click()
+}
 
 }
 export default new MainPage();
