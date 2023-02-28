@@ -10,6 +10,8 @@ async open () {
     await super.open('');
  }
 
+get authMessage(){ return $(".example p")}
+
 //1. Test a/b testing
 
 //parent of the lists
