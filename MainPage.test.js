@@ -9,7 +9,7 @@ describe('navigate the links', ()=>{
 
         await browser.url("http://admin:admin@the-internet.herokuapp.com/basic_auth");
      
-         const page_message = await $(".example p")
+         const page_message = await MainPagePage.authMessage
           
          await expect(page_message).toHaveText("Congratulations! You must have the proper credentials.")
      
@@ -147,6 +147,25 @@ await MainPagePage.clickSubmitButton()
 await browser.pause(2000)
 //Assertion
 await expect(MainPagePage.uploadedMessage).toHaveText('File Uploaded!')
+});
+
+it('11. All the Elements should dissappear when anyone of them is clicked', async () => {
+    //visit main page
+        await MainPagePage.open();
+
+        //navigate to Disappearing Elements page
+        await MainPagePage.clickAnchorLink(9);
+        await browser.pause(5000)
+
+        //click any of the elements by number
+        await MainPagePage.clickTheElements(2);
+        await browser.pause(5000)
+
+        //check that element no longer exisits, the url cahanged
+        await expect(browser).toHaveUrl('https://the-internet.herokuapp.com/about/')
+        await expect(MainPagePage.theElements(2)).not.toBeExisting()
+
+        
 });
     })
 

@@ -10,6 +10,10 @@ async open () {
     await super.open('');
  }
 
+ //disppearing elements
+ theElements(index){ return $(`#content ul li:nth-child(${index}) a`)}
+
+ //auth
 get authMessage(){ return $(".example p")}
 
 //1. Test a/b testing
@@ -117,5 +121,8 @@ async clickSubmitButton(){
    await this.submitUploadButton.click()
 }
 
+async clickTheElements(index){
+   await this.theElements(index).click()
+}
 }
 export default new MainPage();
