@@ -45,6 +45,25 @@ async clickAnchorLink(index) {
 
  get deleteButton(){ return $('#elements button')}
 
+ get iframeLink(){ return $('#content ul li:nth-child(2) a')}
+
+ get iframe(){ return $('.tox-edit-area__iframe')}
+
+ get iframeBody(){ return $('.mce-content-body')}
+
+//-------------------------------------------------------------------------------
+async clearIframeText(){
+  await this.iframeBody.clearValue()
+}
+
+async clickIframeBody(){
+   await this.iframeBody.click()
+}
+
+async clickIframeLink(){
+   await this.iframeLink.click()
+}
+
  async clickAddElement(){
     this.addElement.click()
  }
